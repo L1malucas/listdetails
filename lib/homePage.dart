@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dialogBuilder.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -10,22 +11,15 @@ class HomePage extends StatelessWidget {
         title: const Text('Lista e Detalhes'),
         centerTitle: true,
       ),
-      body: ListView(
-        children: const [
-          ListTile(
+      body: ListView(children: [
+        ElevatedButton(
+          onPressed: (() => dialogBuilder(context)),
+          child: const ListTile(
             leading: Icon(Icons.map),
             title: Text('Mapa'),
           ),
-          ListTile(
-            leading: Icon(Icons.photo),
-            title: Text('Foto'),
-          ),
-          ListTile(
-            leading: Icon(Icons.phone),
-            title: Text('Telefone'),
-          )
-        ],
-      ),
+        ),
+      ]),
     );
   }
 }
