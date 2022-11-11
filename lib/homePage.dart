@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:listdetails/listas.dart';
 import 'dialogBuilder.dart';
 
 // ignore_for_file: prefer_final_fields
@@ -24,10 +23,11 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
       ),
       body: ListView.builder(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(10),
         itemCount: icones.length,
         itemBuilder: (BuildContext context, int index) {
           var item = icones.entries.elementAt(index);
+
           return ElevatedButton(
             onPressed: (() => dialogBuilder(context)),
             child: ListTile(
