@@ -1,6 +1,6 @@
 # listdetails
 
-A new Flutter project.
+Exibe uma lista e ao clicar na lista exibe uma tela de detalhes.
 
 ## Getting Started
 
