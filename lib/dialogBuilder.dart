@@ -6,7 +6,7 @@ Future<void> dialogBuilder(BuildContext context) {
     builder: (BuildContext context) {
       return AlertDialog(
         title: const Text('Detalhes'),
-        content: const Text('Detalhes do item da lista.'),
+        content: const Text('s'),
         actions: <Widget>[
           TextButton(
             style: TextButton.styleFrom(

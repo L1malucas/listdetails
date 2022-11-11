@@ -1,50 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:listdetails/listas.dart';
 import 'dialogBuilder.dart';
 
+// ignore_for_file: prefer_final_fields
+// ignore_for_file: prefer_const_constructors
+
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+
+  Map<String, IconData> icones = {
+    'map': Icons.map,
+    'phone': Icons.phone,
+    'photo': Icons.photo,
+    'ac_unit_outlined': Icons.ac_unit_outlined,
+  };
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       appBar: AppBar(
         title: const Text('Lista e Detalhes'),
         centerTitle: true,
       ),
-      body: ListView(children: [
-        const SizedBox(height: 30),
-        ElevatedButton(
-          onPressed: (() => dialogBuilder(context)),
-          child: const ListTile(
-            leading: Icon(Icons.map),
-            title: Text('Mapa'),
-          ),
-        ),
-        const SizedBox(height: 15),
-        ElevatedButton(
-          onPressed: (() => dialogBuilder(context)),
-          child: const ListTile(
-            leading: Icon(Icons.alarm),
-            title: Text('Alarme'),
-          ),
-        ),
-        const SizedBox(height: 15),
-        ElevatedButton(
-          onPressed: (() => dialogBuilder(context)),
-          child: const ListTile(
-            leading: Icon(Icons.backpack),
-            title: Text('Mochila'),
-          ),
-        ),
-        const SizedBox(height: 15),
-        ElevatedButton(
-          onPressed: (() => dialogBuilder(context)),
-          child: const ListTile(
-            leading: Icon(Icons.cable),
-            title: Text('Cabo'),
-          ),
-        ),
-      ]),
+      body: ListView.builder(
+        padding: const EdgeInsets.all(8),
+        itemCount: icones.length,
+        itemBuilder: (BuildContext context, int index) {
+          var item = icones.entries.elementAt(index);
+          return ElevatedButton(
+            onPressed: (() => dialogBuilder(context)),
+            child: ListTile(
+              leading: Icon(item.value),
+              title: Text(item.key),
+            ),
+          );
+        },
+      ),
     );
   }
 }
