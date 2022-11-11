@@ -12,11 +12,36 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
       ),
       body: ListView(children: [
+        const SizedBox(height: 30),
         ElevatedButton(
           onPressed: (() => dialogBuilder(context)),
           child: const ListTile(
             leading: Icon(Icons.map),
             title: Text('Mapa'),
+          ),
+        ),
+        const SizedBox(height: 15),
+        ElevatedButton(
+          onPressed: (() => dialogBuilder(context)),
+          child: const ListTile(
+            leading: Icon(Icons.alarm),
+            title: Text('Alarme'),
+          ),
+        ),
+        const SizedBox(height: 15),
+        ElevatedButton(
+          onPressed: (() => dialogBuilder(context)),
+          child: const ListTile(
+            leading: Icon(Icons.backpack),
+            title: Text('Mochila'),
+          ),
+        ),
+        const SizedBox(height: 15),
+        ElevatedButton(
+          onPressed: (() => dialogBuilder(context)),
+          child: const ListTile(
+            leading: Icon(Icons.cable),
+            title: Text('Cabo'),
           ),
         ),
       ]),
