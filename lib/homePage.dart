@@ -1,42 +1,64 @@
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'dialogBuilder.dart';
+import 'package:http/http.dart' as http;
 
-// ignore_for_file: prefer_final_fields
-// ignore_for_file: prefer_const_constructors
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
-class HomePage extends StatelessWidget {
-  HomePage({super.key});
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
-  Map<String, IconData> icones = {
-    'map': Icons.map,
-    'phone': Icons.phone,
-    'photo': Icons.photo,
-    'ac_unit_outlined': Icons.ac_unit_outlined,
-  };
-
+class _HomePageState extends State<HomePage> {
+  List<dynamic> users = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
       appBar: AppBar(
-        title: const Text('Lista e Detalhes'),
-        centerTitle: true,
+        title: const Text("lista e detalhes"),
       ),
       body: ListView.builder(
-        padding: const EdgeInsets.all(10),
-        itemCount: icones.length,
-        itemBuilder: (BuildContext context, int index) {
-          var item = icones.entries.elementAt(index);
+        itemCount: users.length,
+        itemBuilder: ((context, index) {
+          final user = users[index];
+          final email = user['email'];
+          final name = user['name']['first'];
+          final avatar = user['picture']['thumbnail'];
 
-          return ElevatedButton(
-            onPressed: (() => dialogBuilder(context)),
-            child: ListTile(
-              leading: Icon(item.value),
-              title: Text(item.key),
-            ),
-          );
-        },
+          return InkWell(
+              onTap: (() {
+                dialogBuilder(context);
+              }),
+              child: Card(
+                elevation: 2,
+                child: ListTile(
+                  leading: ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: Image.network(avatar),
+                  ),
+                  title: Text(name),
+                  tileColor: Colors.deepPurple[200],
+                  subtitle: Text(email),
+                ),
+              ));
+        }),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: fetchUsers,
+        child: const Icon(Icons.add),
       ),
     );
+  }
+
+  void fetchUsers() async {
+    const url = 'https://randomuser.me/api/?results=8';
+    final response = await http.get(Uri.parse(url));
+    final body = jsonDecode(response.body);
+    setState(() {
+      users = body['results'];
+    });
   }
 }
