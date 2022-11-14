@@ -11,11 +11,17 @@ class ListApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const HomePage(),
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-      ),
-    );
+        debugShowCheckedModeBanner: false,
+        home: const HomePage(),
+        theme: ThemeData(
+          backgroundColor: Colors.grey[400],
+          primarySwatch: Colors.deepPurple,
+          cardTheme: CardTheme(
+            clipBehavior: Clip.hardEdge,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+          ),
+        ));
   }
 }
