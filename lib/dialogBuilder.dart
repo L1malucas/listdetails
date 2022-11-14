@@ -1,18 +1,16 @@
-import 'request.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
-import 'dart:convert';
-
-// daqui pra cima doc flutter
-
-Future<void> dialogBuilder(BuildContext context) {
+Future<void> dialogBuilder(
+    String country, String city, String state, BuildContext context) {
+  final pais = country;
+  final cidade = city;
+  final estado = state;
   return showDialog<void>(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: const Text('Detalhes'),
-        content: const Text('a'),
+        title: Text(pais),
+        content: Text('Estado: $estado \nCidade: $cidade'),
         actions: <Widget>[
           TextButton(
             style: TextButton.styleFrom(
