@@ -1,10 +1,13 @@
+// ignore_for_file: no_logic_in_create_state
+
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class TelaDetalhes extends StatefulWidget {
-  const TelaDetalhes({super.key});
+  const TelaDetalhes({Key? key, required this.user}) : super(key: key);
+  final List<dynamic> user;
 
   @override
   State<TelaDetalhes> createState() => _TelaDetalhesState();
@@ -14,24 +17,23 @@ class _TelaDetalhesState extends State<TelaDetalhes> {
   @override
   void initState() {
     super.initState();
-    debugPrint("antes do get");
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      getuser();
-      debugPrint("depois do get");
-    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {});
   }
 
-  List<dynamic> users = [];
+  // List<dynamic> users = [];
   @override
   Widget build(BuildContext context) {
+    final usuario = widget.user;
+    print('usuario $usuario');
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("detalhes"),
       ),
       body: ListView.builder(
-        itemCount: users.length,
+        itemCount: usuario.length,
         itemBuilder: ((context, index) {
-          final user = users[index];
+          final user = usuario[index];
           final country = user['location']['country'];
           final city = user['location']['city'];
           final state = user['location']['state'];
@@ -89,12 +91,12 @@ class _TelaDetalhesState extends State<TelaDetalhes> {
   }
 
   //GETALL
-  void getuser() async {
-    final response =
-        await http.get(Uri.parse('https://randomuser.me/api/?user=7'));
-    final body = jsonDecode(response.body);
-    setState(() {
-      users = body['results'];
-    });
-  }
+  // void getuser(int user) async {
+  //   final response =
+  //       await http.get(Uri.parse('https://randomuser.me/api/?user=$users'));
+  //   final body = jsonDecode(response.body);
+  //   setState(() {
+  //     users = body['results'];
+  //   });
+  // }
 }

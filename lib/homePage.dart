@@ -23,10 +23,11 @@ class _HomePageState extends State<HomePage> {
         itemCount: users.length,
         itemBuilder: ((context, index) {
           final user = users[index];
+
           final email = user['email'];
           final name = user['name']['first'];
           final avatar = user['picture']['medium'];
-          print(users[2]);
+          // print(users[index]);
 
           // print(user);
           return InkWell(
@@ -34,7 +35,10 @@ class _HomePageState extends State<HomePage> {
               //adicionar outra tela aqui
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (coontext) => const TelaDetalhes()),
+                MaterialPageRoute(
+                    builder: (coontext) => TelaDetalhes(
+                          user: [user],
+                        )),
               );
             }),
             child: Container(
