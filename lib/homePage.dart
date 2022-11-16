@@ -25,26 +25,29 @@ class _HomePageState extends State<HomePage> {
           final user = users[index];
           final email = user['email'];
           final name = user['name']['first'];
-          final avatar = user['picture']['thumbnail'];
-          print(user);
+          final avatar = user['picture']['medium'];
+          print(users[2]);
+
+          // print(user);
           return InkWell(
             onTap: (() {
               //adicionar outra tela aqui
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (coontext) => TelaDetalhes()),
+                MaterialPageRoute(builder: (coontext) => const TelaDetalhes()),
               );
             }),
-            child: Container( 
-              margin: EdgeInsets.all(8.0),
+            child: Container(
+              margin: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(
+                color: Colors.black38,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Card(
                 elevation: 2,
                 child: ListTile(
                   leading: ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
+                    borderRadius: BorderRadius.circular(150),
                     child: Image.network(avatar),
                   ),
                   title: Text(name),
@@ -58,7 +61,7 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: fetchUsers,
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.refresh),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

@@ -16,6 +16,7 @@ class ListApp extends StatelessWidget {
         theme: ThemeData(
           backgroundColor: Colors.grey[400],
           primarySwatch: Colors.deepPurple,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
           cardTheme: CardTheme(
             clipBehavior: Clip.hardEdge,
             shape: RoundedRectangleBorder(
